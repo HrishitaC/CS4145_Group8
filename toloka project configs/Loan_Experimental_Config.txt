@@ -1,0 +1,590 @@
+{
+  "view": {
+    "type": "view.list",
+    "items": [
+      {
+        "type": "view.markdown",
+        "content": "Consider the following profile of a person being assessed for a financial loan approval:"
+      },
+      {
+        "type": "layout.columns",
+        "items": [
+          {
+            "type": "view.list",
+            "items": [
+              {
+                "type": "view.markdown",
+                "content": {
+                  "type": "helper.join",
+                  "items": [
+                    "**Employment title**: ",
+                    {
+                      "type": "data.input",
+                      "path": "emp_title"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "view.markdown",
+                "content": {
+                  "type": "helper.join",
+                  "items": [
+                    "**Employment length**: ",
+                    {
+                      "type": "data.input",
+                      "path": "emp_length"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "view.markdown",
+                "content": {
+                  "type": "helper.join",
+                  "items": [
+                    "**Annual income**: ",
+                    {
+                      "type": "data.input",
+                      "path": "annual_income"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "view.markdown",
+                "content": {
+                  "type": "helper.join",
+                  "items": [
+                    "**Debt to income**: ",
+                    {
+                      "type": "data.input",
+                      "path": "debt_to_income"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "view.markdown",
+                "content": {
+                  "type": "helper.join",
+                  "items": [
+                    "**Total credit lines**: ",
+                    {
+                      "type": "data.input",
+                      "path": "total_credit_lines"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "view.markdown",
+                "content": {
+                  "type": "helper.join",
+                  "items": [
+                    "**Open credit lines**: ",
+                    {
+                      "type": "data.input",
+                      "path": "open_credit_lines"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "type": "view.list",
+            "items": [
+              {
+                "type": "view.markdown",
+                "content": {
+                  "type": "helper.join",
+                  "items": [
+                    "**Interest rate**: ",
+                    {
+                      "type": "data.input",
+                      "path": "interest_rate"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "view.markdown",
+                "content": {
+                  "type": "helper.join",
+                  "items": [
+                    "**Total credit limit**: ",
+                    {
+                      "type": "data.input",
+                      "path": "total_credit_limit"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "view.markdown",
+                "content": {
+                  "type": "helper.join",
+                  "items": [
+                    "**Total credit utilized**: ",
+                    {
+                      "type": "data.input",
+                      "path": "total_credit_utilized"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "view.markdown",
+                "content": {
+                  "type": "helper.join",
+                  "items": [
+                    "**Loan purpose**: ",
+                    {
+                      "type": "data.input",
+                      "path": "loan_purpose"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "view.markdown",
+                "content": {
+                  "type": "helper.join",
+                  "items": [
+                    "**Loan amount**: ",
+                    {
+                      "type": "data.input",
+                      "path": "loan_amount"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+{
+        "type": "view.markdown",
+        "content": "Now consider the following risk assessments made by two different decision-makers for this profile:"
+      },
+      {
+        "type": "layout.columns",
+        "items": [
+          {
+            "type": "view.markdown",
+            "content": {
+              "type": "helper.join",
+              "items": [
+                "Decision-maker 1: ",
+                {
+                  "type": "data.input",
+                  "path": "decision_1"
+                },
+                "\n\n",
+                {
+                  "type": "data.input",
+                  "path": "rationale_1"
+                }
+              ]
+            }
+          },
+          {
+            "type": "view.markdown",
+            "content": {
+              "type": "helper.join",
+              "items": [
+                "Decision-maker 2: ",
+                {
+                  "type": "data.input",
+                  "path": "decision_2"
+                },
+                "\n\n",
+                {
+                  "type": "data.input",
+                  "path": "rationale_2"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "type": "view.list",
+        "items": [
+          {
+            "type": "field.radio-group",
+            "label": "Considering the provided information, which decision do you agree with?",
+            "options": [
+              {
+                "label": "High Risk",
+                "value": "1"
+              },
+              {
+                "label": "Low Risk",
+                "value": "0"
+              }
+            ],
+            "data": {
+              "type": "data.output",
+              "path": "answer1"
+            },
+            "validation": {
+              "type": "condition.any",
+              "conditions": [
+                {
+                  "type": "condition.not",
+                  "condition": {
+                    "type": "condition.empty",
+                    "data": {
+                      "type": "data.output",
+                      "path": "confirmation"
+                    }
+                  }
+                },
+                {
+                  "type": "condition.not",
+                  "condition": {
+                    "type": "condition.empty",
+                    "data": {
+                      "type": "data.output",
+                      "path": "confidence1"
+                    }
+                  }
+                },
+                {
+                  "type": "condition.required"
+                }
+              ]
+            },
+            "disabled": {
+              "type": "condition.not",
+              "condition": {
+                "type": "condition.empty",
+                "data": {
+                  "type": "data.output",
+                  "path": "confirmation"
+                }
+              }
+            }
+          },
+          {
+            "type": "field.button-radio-group",
+            "label": "How confident are you in your decision?",
+            "options": [
+              {
+                "label": "1",
+                "value": "1"
+              },
+              {
+                "label": "2",
+                "value": "2"
+              },
+              {
+                "label": "3",
+                "value": "3"
+              },
+              {
+                "label": "4",
+                "value": "4"
+              },
+              {
+                "label": "5",
+                "value": "5"
+              },
+              {
+                "label": "6",
+                "value": "6"
+              },
+              {
+                "label": "7",
+                "value": "7"
+              }
+            ],
+            "data": {
+              "type": "data.output",
+              "path": "confidence1"
+            },
+            "validation": {
+              "type": "condition.any",
+              "conditions": [
+                {
+                  "type": "condition.not",
+                  "condition": {
+                    "type": "condition.empty",
+                    "data": {
+                      "type": "data.output",
+                      "path": "confirmation"
+                    }
+                  }
+                },
+                {
+                  "type": "condition.required"
+                }
+              ]
+            },
+            "disabled": {
+              "type": "condition.not",
+              "condition": {
+                "type": "condition.empty",
+                "data": {
+                  "type": "data.output",
+                  "path": "confirmation"
+                }
+              }
+            }
+          },
+          {
+                      "type": "view.text",
+                      "content": "In the following text box, please copy and paste 1-2 sentences from the provided explanantions that informed your decision."
+                    },
+                    {
+                      "type": "field.text",
+                      "data": {
+                        "type": "data.output",
+                        "path": "excerpt1"
+                      },
+                      "validation": {
+                        "type": "condition.any",
+                        "conditions": [
+                          {
+                            "type": "condition.not",
+                            "condition": {
+                              "type": "condition.empty",
+                              "data": {
+                                "type": "data.output",
+                                "path": "confirmation"
+                              }
+                            }
+                          },
+                          {
+                            "type": "condition.required"
+                          }
+                        ]
+                      },
+                      "disabled": {
+              "type": "condition.not",
+              "condition": {
+                "type": "condition.empty",
+                "data": {
+                  "type": "data.output",
+                  "path": "confirmation"
+                }
+              }
+            }
+                    },
+          {
+            "type": "field.button-radio",
+            "label": "Submit decision",
+            "valueToSet": "confirm",
+            "data": {
+              "type": "data.output",
+              "path": "confirmation"
+            },
+            "validation": {
+              "type": "condition.any",
+              "conditions": [
+                {
+                  "type": "condition.not",
+                  "condition": {
+                    "type": "condition.empty",
+                    "data": {
+                      "type": "data.output",
+                      "path": "answer1"
+                    }
+                  }
+                },
+                {
+                  "type": "condition.not",
+                  "condition": {
+                    "type": "condition.empty",
+                    "data": {
+                      "type": "data.output",
+                      "path": "confidence1"
+                    }
+                  }
+                },
+                {
+                  "type": "condition.required"
+                }
+              ]
+            },
+            "disabled": {
+              "type": "condition.any",
+              "conditions": [
+              {
+                "type": "condition.empty",
+              "data": {
+                "type": "data.output",
+                "path": "answer1"
+              }
+              },
+              {
+                "type": "condition.empty",
+              "data": {
+                "type": "data.output",
+                "path": "confidence1"
+              }
+              },
+              {
+                "type": "condition.empty",
+              "data": {
+                "type": "data.output",
+                "path": "excerpt1"
+              }
+              }
+        ]
+            }
+          },
+          {
+            "type": "helper.if",
+            "condition": {
+              "type": "condition.equals",
+              "data": {
+                "type": "data.output",
+                "path": "confirmation"
+              },
+              "to": "confirm"
+            },
+            "then": {
+              "type": "view.list",
+              "items": [
+                {
+                  "type": "view.text",
+                  "content": "Now consider the following information about the profiles of the decision-makers:"
+                },
+                {
+                  "type": "view.markdown",
+                  "content": {
+                    "type": "helper.join",
+                    "items": [
+                      "Decision-maker 1 was: **",
+                      {
+                        "type": "data.input",
+                        "path": "profile_1"
+                      },
+                      "** and Decision-maker 2 was: **",
+                      {
+                        "type": "data.input",
+                        "path": "profile_2"
+                      },
+                      "**"
+                    ]
+                  }
+                },
+                {
+                  "type": "view.list",
+                  "items": [
+                    {
+                      "type": "field.radio-group",
+                      "label": "Considering this additional information, which decision do you agree with?",
+                      "options": [
+                        {
+                          "label": "High Risk",
+                          "value": "1"
+                        },
+                        {
+                          "label": "Low Risk",
+                          "value": "0"
+                        }
+                      ],
+                      "data": {
+                        "type": "data.output",
+                        "path": "answer2"
+                      }
+                    },
+                    {
+            "type": "field.button-radio-group",
+            "label": "How confident are you in your decision?",
+            "options": [
+              {
+                "label": "1",
+                "value": "1"
+              },
+              {
+                "label": "2",
+                "value": "2"
+              },
+              {
+                "label": "3",
+                "value": "3"
+              },
+              {
+                "label": "4",
+                "value": "4"
+              },
+              {
+                "label": "5",
+                "value": "5"
+              },
+              {
+                "label": "6",
+                "value": "6"
+              },
+              {
+                "label": "7",
+                "value": "7"
+              }
+            ],
+            "data": {
+              "type": "data.output",
+              "path": "confidence2"
+            },
+            "validation": {
+              "type": "condition.any",
+              "conditions": [
+                {
+                  "type": "condition.not",
+                  "condition": {
+                    "type": "condition.empty",
+                    "data": {
+                      "type": "data.output",
+                      "path": "confirmation"
+                    }
+                  }
+                },
+                {
+                  "type": "condition.required"
+                }
+              ]
+            }
+            },
+                    {
+                      "type": "view.text",
+                      "content": "In the following text box, please copy and paste 1-2 sentences from the provided explanantions that informed your decision."
+                    },
+                    {
+                      "type": "field.text",
+                      "data": {
+                        "type": "data.output",
+                        "path": "excerpt2"
+                      },
+                      "validation": {
+                        "type": "condition.any",
+                        "conditions": [
+                          {
+                            "type": "condition.not",
+                            "condition": {
+                              "type": "condition.empty",
+                              "data": {
+                                "type": "data.output",
+                                "path": "excerpt2"
+                              }
+                            }
+                          },
+                          {
+                            "type": "condition.required"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
